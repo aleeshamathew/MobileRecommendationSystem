@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations - Mobile Recommender</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .recommendation {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.5s ease-in-out;
+            animation-delay: calc(0.1s * var(--i));
+        }
+        .recommendation p {
+            margin: 0;
+            color: #555;
+            font-size: 1.1em;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #9b59b6;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background: #8e44ad;
+            transform: translateY(-3px);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Mobile Recommendations</h2>
+        {% for recommendation in recommendations %}
+        <div class="recommendation" style="--i: {{ loop.index0 }}">
+            <p>{{ recommendation }}</p>
+        </div>
+        {% endfor %}
+        <a href="/input" class="btn">Try Another</a>
+    </div>
+</body>
+</html>
